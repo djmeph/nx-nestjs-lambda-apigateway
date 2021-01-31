@@ -36,8 +36,12 @@
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.87.1",
+    "@aws-cdk/aws-apigateway": "1.87.1",
+    "@aws-cdk/aws-codepipeline": "1.87.1",
+    "@aws-cdk/aws-codepipeline-actions": "1.87.1",
+    "@aws-cdk/aws-lambda": "1.87.1",
     "@aws-cdk/core": "1.87.1",
-    "@myin/aws-cdk": "0.0.7",
+    "@aws-cdk/pipelines": "1.87.1",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
     "@nrwl/cli": "11.2.6",
