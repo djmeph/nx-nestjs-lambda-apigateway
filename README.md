@@ -1,6 +1,45 @@
 
 
-# NxNestjsLambdaApigateway
+# NX Nestjs Lambda API Gateway Example
+## Includes CDK Pipelines CI Integration
+
+Simplified example of how to deploy a Nestjs API to AWS Lambda/API Gateway.
+
+To prepare this repo run `npm install` and create a file called `.local.env` in the root of the project, with the account and region you wish to deploy the API.
+
+`.local.env`
+```
+AWS_ACCOUNT=000000000000
+AWS_REGION=us-east-1
+```
+
+:warning: The first time you deploy CDK Pipelines you must bootsrap the account and region you wish to deploy to. A script is included that will bootstrap the account and region from `.local.env`.
+
+`npm run nx bootstrap infrastructure`
+
+Next, create a personal access token in your Github account to securely store in AWS to retrieve your source code. For more information on how to do this and the permissions you will need, [read here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+
+[https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+
+Finally, create a secret in AWS Secrets Manager to store your Github Personal Access Token, with the secret ID `GITHUB_READ_TOKEN`. Store the exact key in plaintext with no spaces or JSON.
+
+:warning: You will need to fork this repo to gain access to git hooks.
+
+Once these steps are complete, you should be able to launch the CDK Pipeline with the following command:
+
+`nx deploy infrastructure`
+
+When the Cloudformation stack is online, you can find the endpoint in the Outputs tab of the Lambda Stack. Open it with curl or in a browser, attach `/api` to the end and it should return a 'Hello World!' message.
+
+Other notes:
+
+- This Nestjs app includes a library with a service that the endpoint logic uses to fetch the message it returns. This is to demonstrate that all of your code will be wrapped up in the output file, with no need to build separate modules or publish them.
+- The only thing needed aside from the bundled main.js output is the production node_modules and package.json. Check the file `tools/deploy/build-lambda.sh` to reference how this is done in the build step of the pipeline.
+- Keep in mind that any pushes to `main` will attempt to re-deploy the stack. In this instance, CDK Pipelines doesn't just deploy your infrastructure, it also contains a CI pipeline for deploying changes to the API.
+
+ToDos:
+
+- There should be a better way to wrap the fucntion in `lambda.zip` without using a hackey bash script. Would like to explore npm modules that will replicate this script, as well as scan the `main.js` bundle for a list of npm modules used in order to build a smaller package.json with only necessary dependencies.
 
 This project was generated using [Nx](https://nx.dev).
 

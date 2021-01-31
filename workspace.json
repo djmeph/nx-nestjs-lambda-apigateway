@@ -117,6 +117,15 @@
       "root": "apps/infrastructure",
       "sourceRoot": "apps/infrastructure/src",
       "targets": {
+        "bootstrap": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "cwd": "apps/infrastructure",
+            "cloudformation-execution-policies": "arn:aws:iam::aws:policy/AdministratorAccess aws://$AWS_ACCOUNT/$AWS_REGION",
+            "profile": "default",
+            "command": "cdk bootstrap"
+          }
+        },
         "build": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
