@@ -15,5 +15,9 @@
       "options": { "cacheableOperations": ["lint", "test", "e2e"] }
     }
   },
-  "projects": { "api": { "tags": [] }, "hello-world": { "tags": [] } }
+  "projects": {
+    "api": { "tags": [] },
+    "hello-world": { "tags": [] },
+    "infrastructure": { "tags": [] }
+  }
 }
