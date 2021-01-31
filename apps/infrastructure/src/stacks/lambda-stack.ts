@@ -29,10 +29,5 @@ export class LambdaStack extends Stack {
     const api = new LambdaRestApi(this, 'nestj-lambda-api', {
       handler: this.func,
     });
-
-    new CfnOutput(this, 'nestjs-lambda-endpoint-uri', {
-      value: api.url,
-      description: 'Nestjs Lambda API Endpoit URI'
-    })
   }
 }
