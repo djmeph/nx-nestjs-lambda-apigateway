@@ -127,13 +127,6 @@
             "app": "'ts-node -r tsconfig-paths/register src/main.ts'"
           }
         },
-        "build-lambda": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "apps/infrastructure",
-            "command": "if [ \"{args.stack}\" = \"undefined\" ]; then cdk synth --lookups false --strict true --app 'ts-node -r tsconfig-paths/register src/lambda.ts'; else cdk synth --lookups false --strict true --app 'ts-node -r tsconfig-paths/register src/lambda.ts' {args.stack}; fi"
-          }
-        },
         "deploy": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {

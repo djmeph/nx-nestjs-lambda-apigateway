@@ -31,8 +31,8 @@ export class AppStack extends Stack {
 
   createPipeline() {
     const cloudAssemblyArtifact = new Artifact();
-    this.pipeline = new CdkPipeline(this, 'cdk-pipeline', {
-      pipelineName: 'LambdaAPIPipeline',
+    this.pipeline = new CdkPipeline(this, 'cdk-pipeline-nestjs-lambda', {
+      pipelineName: 'NestjsLambdaAPIPipeline',
       cloudAssemblyArtifact,
       sourceAction: this.sourceAction,
       synthAction: SimpleSynthAction.standardNpmSynth({

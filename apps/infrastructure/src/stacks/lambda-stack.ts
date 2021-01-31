@@ -3,7 +3,7 @@ import { Construct, Duration, Stack, StackProps } from "@aws-cdk/core";
 import { LambdaRestApi } from '@aws-cdk/aws-apigateway';
 import * as path from 'path';
 
-const zipFilePath = path.join(__dirname, '../../../../..', 'lambda.zip');
+const zipFilePath = path.join(__dirname, '../../../..', 'lambda.zip');
 
 export class LambdaStack extends Stack {
   private func: Function;
@@ -15,7 +15,7 @@ export class LambdaStack extends Stack {
   }
 
   createLambdaFunction() {
-    this.func = new Function(this, 'api-lambda', {
+    this.func = new Function(this, 'api-nestjs-lambda', {
       code: Code.fromAsset(zipFilePath),
       handler: 'dist/apps/api-lambda/main.handler',
       runtime: Runtime.NODEJS_12_X,
@@ -26,7 +26,7 @@ export class LambdaStack extends Stack {
   }
 
   createApi() {
-    new LambdaRestApi(this, 'widgets-api', {
+    new LambdaRestApi(this, 'nestj-lambda-api', {
       handler: this.func,
     });
   }
