@@ -1,5 +1,5 @@
 import { Code, Function, Runtime } from "@aws-cdk/aws-lambda";
-import { Construct, Duration, Stack, StackProps } from "@aws-cdk/core";
+import { CfnOutput, Construct, Duration, Stack, StackProps } from "@aws-cdk/core";
 import { LambdaRestApi } from '@aws-cdk/aws-apigateway';
 import * as path from 'path';
 
@@ -26,8 +26,13 @@ export class LambdaStack extends Stack {
   }
 
   createApi() {
-    new LambdaRestApi(this, 'nestj-lambda-api', {
+    const api = new LambdaRestApi(this, 'nestj-lambda-api', {
       handler: this.func,
     });
+
+    new CfnOutput(this, 'nestjs-lambda-endpoint-uri', {
+      value: api.url,
+      description: 'Nestjs Lambda API Endpoit URI'
+    })
   }
 }
