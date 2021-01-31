@@ -34,7 +34,7 @@ When the Cloudformation stack is online, you can find the endpoint in the Output
 Other notes:
 
 - This Nestjs app includes a library with a service that the endpoint logic uses to fetch the message it returns. This is to demonstrate that all of your code will be wrapped up in the output file, with no need to build separate modules or publish them.
-- The only thing needed aside from the bundled main.js output is the production node_modules and package.json. Check the file `tools/deploy/build-lambda.sh` to reference how this is done in the build step of the pipeline.
+- The only thing needed aside from the bundled `main.js` output is the production `node_modules` and `package.json`. Check the file `tools/deploy/build-lambda.sh` to reference how this is done in the build step of the pipeline.
 - Keep in mind that any pushes to `main` will attempt to re-deploy the stack. In this instance, CDK Pipelines doesn't just deploy your infrastructure, it also contains a CI pipeline for deploying changes to the API.
 
 ToDos:
